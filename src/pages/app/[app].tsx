@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Counter } from "../../components/Counter";
 
@@ -6,4 +7,11 @@ const AppPage = () => {
   return <Counter appName={router.query.app as string} />;
 };
 
-export default AppPage;
+const DynamicAppPage = dynamic(
+  {
+    loader: async () => AppPage,
+  },
+  { ssr: false }
+);
+
+export default DynamicAppPage;
