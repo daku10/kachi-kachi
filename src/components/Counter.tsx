@@ -12,12 +12,18 @@ export const Counter = ({ appName }: Props) => {
 
   return (
     <div className="h-screen grid place-items-center">
-      <div className="flex space-x-4">
-        <button className="text-2xl" onClick={increment}>
+      <div className="flex space-x-4 items-center">
+        <button
+          className="text-2xl bg-amber-200 rounded-full w-8 h-8"
+          onClick={increment}
+        >
           +
         </button>
         <text className="text-3xl w-8 text-center">{value}</text>
-        <button className="text-2xl" onClick={decrement}>
+        <button
+          className="text-2xl bg-amber-200 rounded-full w-8 h-8"
+          onClick={decrement}
+        >
           -
         </button>
       </div>
