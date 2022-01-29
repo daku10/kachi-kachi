@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Props = {
   appName: string;
@@ -31,7 +31,9 @@ type KVProps = {
 };
 
 const useCounter = ({ appName, initialValue }: KVProps) => {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(
+    Number(localStorage.getItem(appName)) ?? initialValue
+  );
 
   const increment = useMemo(() => {
     return () => setValue((prev) => prev + 1);
@@ -40,6 +42,10 @@ const useCounter = ({ appName, initialValue }: KVProps) => {
   const decrement = useMemo(() => {
     return () => setValue((prev) => prev - 1);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem(appName, value.toString());
+  }, [value, appName]);
 
   return {
     value,
